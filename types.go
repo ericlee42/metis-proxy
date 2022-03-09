@@ -10,10 +10,10 @@ type JsonRequest struct {
 }
 
 type JsonResponse struct {
-	ID      interface{} `json:"id,omitempty"`
-	Version string      `json:"jsonrpc,omitempty"`
+	ID      interface{} `json:"id"`
+	Version string      `json:"jsonrpc"`
 	Error   *JsonError  `json:"error,omitempty"`
-	Result  interface{} `json:"result,omitempty"`
+	Result  interface{} `json:"result"`
 }
 
 type JsonError struct {
