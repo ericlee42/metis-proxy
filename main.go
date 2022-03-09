@@ -41,6 +41,7 @@ func main() {
 		newctx, cancel := context.WithTimeout(context.Background(), time.Second*time.Duration(TimeoutSecond))
 		defer cancel()
 
+		w.Header().Add("Content-Type", "application/json")
 		var reqdata JsonRequest
 		_ = json.NewDecoder(req.Body).Decode(&reqdata)
 
