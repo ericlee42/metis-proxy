@@ -30,11 +30,13 @@ func main() {
 	if err != nil {
 		panic(err)
 	}
+	defer sequencer.Close()
 
 	replica, err := rpc.Dial(LocalReplicaNode)
 	if err != nil {
 		panic(err)
 	}
+	defer replica.Close()
 
 	handler := http.NewServeMux()
 	handler.HandleFunc("/", func(w http.ResponseWriter, req *http.Request) {
