@@ -40,10 +40,16 @@ func main() {
 
 	handler := http.NewServeMux()
 	handler.HandleFunc("/", func(w http.ResponseWriter, req *http.Request) {
+		w.Header().Set("Access-Control-Allow-Origin", "*")
+		w.Header().Set("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS")
+
+		if req.Method == http.MethodGet {
+			return
+		}
 		newctx, cancel := context.WithTimeout(context.Background(), time.Second*time.Duration(TimeoutSecond))
 		defer cancel()
 
-		w.Header().Add("Content-Type", "application/json")
+		w.Header().Set("Content-Type", "application/json")
 		var reqdata JsonRequest
 		_ = json.NewDecoder(req.Body).Decode(&reqdata)
 
