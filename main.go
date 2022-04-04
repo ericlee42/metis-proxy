@@ -43,7 +43,7 @@ func main() {
 		w.Header().Set("Access-Control-Allow-Origin", "*")
 		w.Header().Set("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS")
 
-		if req.Method == http.MethodGet {
+		if req.Method != http.MethodPost {
 			return
 		}
 		newctx, cancel := context.WithTimeout(context.Background(), time.Second*time.Duration(TimeoutSecond))
